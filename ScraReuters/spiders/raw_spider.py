@@ -29,5 +29,6 @@ class RawSpider(BaseSpider):
             item['link'] = target.select('a/@href').extract()[0]
             #str_time = item.select('text()').extract()[0][1:]
             #time = parse(str_time)
-            items.append(item)
+            if not item['link'].startswith('http://www.reuters.com/news/video/'):
+                items.append(item)
         return items

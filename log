@@ -1,0 +1,12 @@
+2013-01-17 20:49:49+0800 [scrapy] INFO: Scrapy 0.16.3 started (bot: ScraReuters)
+2013-01-17 20:49:49+0800 [scrapy] DEBUG: Enabled extensions: FeedExporter, LogStats, TelnetConsole, CloseSpider, WebService, CoreStats, SpiderState
+2013-01-17 20:49:49+0800 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, ChunkedTransferMiddleware, DownloaderStats
+2013-01-17 20:49:49+0800 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
+2013-01-17 20:49:49+0800 [scrapy] DEBUG: Enabled item pipelines: 
+2013-01-17 20:49:49+0800 [RawSpider] INFO: Spider opened
+2013-01-17 20:49:49+0800 [RawSpider] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2013-01-17 20:49:49+0800 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6023
+2013-01-17 20:49:49+0800 [scrapy] DEBUG: Web service listening on 0.0.0.0:6080
+2013-01-17 20:50:21+0800 [scrapy] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2013-01-17 20:50:21+0800 [RawSpider] INFO: Closing spider (shutdown)
+2013-01-17 20:50:49+0800 [RawSpider] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)

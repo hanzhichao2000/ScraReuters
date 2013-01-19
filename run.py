@@ -18,18 +18,19 @@ def crawl_day_page(year=2008, month=1, day=1):
         print 'Fetching %d-%02d-%02d'%(cd.year, cd.month, cd.day)
         outfile = 'reuters/%04d%02d%02d.json'%(cd.year, cd.month, cd.day)
         if not os.path.exists(outfile):
-            subprocess.call('scrapy crawl RawSpider \
+            subprocess.call('scrapy crawl ReutersSpider \
                                 -a year=%d -a month=%d -a day=%d \
-                                -o %s -t json 2>NULL'%(
+                                -o %s -t json'%(
                                 cd.year, cd.month, cd.day, outfile),
                             shell=True)
-        try:
-            news = json.load(open(outfile))
-            current_date += delta
-        except Exception:
-            print '- Error!'
-            os.remove(outfile)
-            time.sleep(10)
+        #try:
+        break #TODO
+        #news = json.load(open(outfile))
+        current_date += delta
+        #except Exception as e:
+        #    print '- Error!'
+        #    os.remove(outfile)
+        #    time.sleep(10)
 if __name__ == '__main__':
     crawl_day_page()
 

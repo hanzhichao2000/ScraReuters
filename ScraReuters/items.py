@@ -5,6 +5,8 @@
 
 from scrapy.item import Item, Field
 
-class RawItem(Item):
+class NewsItem(Item):
     title = Field()
     link = Field()
+    symbols = Field()
+    text = Field()

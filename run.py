@@ -12,6 +12,7 @@ import time
 def crawl_day_page(year=2008, month=1, day=1):
     current_date = datetime(year, month, day)
     delta = timedelta(1)
+
     while current_date < datetime(2013, 1, 1):
         cd = current_date
         print 'Fetching %d-%02d-%02d'%(cd.year, cd.month, cd.day)

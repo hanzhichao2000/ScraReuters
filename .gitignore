@@ -1,5 +1,7 @@
 # custimzed rule
 *.json
+log
+reuters/
 
 *.py[cod]
 

@@ -10,3 +10,4 @@ class NewsItem(Item):
     link = Field()
     symbols = Field()
     text = Field()
+    date = Field()

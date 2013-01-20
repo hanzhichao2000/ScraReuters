@@ -9,7 +9,7 @@ import os
 import subprocess
 import time
 
-def crawl_day_page(year=2008, month=1, day=1):
+def crawl_day_page(year=2007, month=1, day=1):
     current_date = datetime(year, month, day)
     delta = timedelta(1)
 
@@ -20,12 +20,11 @@ def crawl_day_page(year=2008, month=1, day=1):
         if not os.path.exists(outfile):
             subprocess.call('scrapy crawl ReutersSpider \
                                 -a year=%d -a month=%d -a day=%d \
-                                -o %s -t json'%(
+                                -o %s -t json --nolog'%(
                                 cd.year, cd.month, cd.day, outfile),
                             shell=True)
         #try:
-        break #TODO
-        #news = json.load(open(outfile))
+        news = json.load(open(outfile))
         current_date += delta
         #except Exception as e:
         #    print '- Error!'

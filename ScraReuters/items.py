@@ -9,5 +9,6 @@ class NewsItem(Item):
     title = Field()
     link = Field()
     symbols = Field()
+    sectors = Field()
     text = Field()
     date = Field()

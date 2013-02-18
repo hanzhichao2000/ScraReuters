@@ -23,13 +23,14 @@ def crawl_day_page(year=2007, month=1, day=1):
                                 -o %s -t json --nolog'%(
                                 cd.year, cd.month, cd.day, outfile),
                             shell=True)
-        #try:
-        news = json.load(open(outfile))
-        current_date += delta
-        #except Exception as e:
-        #    print '- Error!'
-        #    os.remove(outfile)
-        #    time.sleep(10)
+        try:
+            json.load(open(outfile))
+            current_date += delta
+            print '\t done.!'
+        except Exception:
+            print '- Error!'
+            os.remove(outfile)
+            time.sleep(10)
 if __name__ == '__main__':
     crawl_day_page()
 

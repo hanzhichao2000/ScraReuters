@@ -9,8 +9,6 @@ TODO:
 from datetime import datetime
 import re
 
-from dateutil.parser import parse
-
 import nltk
 from nltk.tokenize import WordPunctTokenizer as WPTker
 
@@ -19,7 +17,6 @@ from scrapy.http import Request
 from scrapy.selector import HtmlXPathSelector
 
 from ScraReuters.items import NewsItem
-from ScraReuters.company import get_symbols_in_title
 
 class MediaType:
     '''The base type of wire media'''
@@ -108,6 +105,8 @@ class ReutersSpider(BaseSpider):
     @staticmethod
     def find_symbols(body):
         '''
+        Extract the related symbols in the news.
+
         e.g. The script in the html is like
         <script type="text/javascript">
                 Reuters.info.sRelatedStocks = 'VOD.L,LAND.L,RBS.L,LSE.L,NDAQ.O';
@@ -118,23 +117,30 @@ class ReutersSpider(BaseSpider):
             return raw_symbols[0].split(',')
         else:
             return []
-    
+
     def parse_news(self, response):
-        '''Parses news pages'''
+        '''Parse news pages'''
+        print '.',
         hxs = HtmlXPathSelector(response)
         item = NewsItem()
         raw_title = hxs.select('//title/text()').extract()[0]
         item['title'] = normalize_title(raw_title)
         item['link'] = response.url
         
-        # Gets symbols from the page
+        # Find symbols from the page
         item['symbols'] = ReutersSpider.find_symbols(response.body)
         
         # Return None if no symbol is found
         if not len(item['symbols'])>0:
             return
         
-        # Gets text from the page
+        # Get sectors from the page
+        sectors = []
+        for li in hxs.select('//div[@id="relatedTopics"]/div[@class="moduleBody"]/ul/li'):
+            sectors.append(li.select('a/text()').extract()[0][:-2])
+        item['sectors'] = sectors
+
+        # Get text from the page
         item['text'] = ''
         for target in hxs.select('//div[@id="articleContent"]/div[@class="sectionContent"]'):
             for p in target.select('//p'):

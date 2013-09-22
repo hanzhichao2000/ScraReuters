@@ -17,6 +17,7 @@ from scrapy.http import Request
 from scrapy.selector import HtmlXPathSelector
 
 from ScraReuters.items import NewsItem
+from ScraReuters import company
 
 class MediaType:
     '''The base type of wire media'''
@@ -128,11 +129,16 @@ class ReutersSpider(BaseSpider):
         item['link'] = response.url
         
         # Find symbols from the page
-        item['symbols'] = ReutersSpider.find_symbols(response.body)
+        # item['symbols'] = ReutersSpider.find_symbols(response.body)
+        item['symbols'] = company.get_symbols_in_title(item['title'])
+        
+        # FIXME: debug
+        if len(item['symbols'])>0:
+            print '\n\t', item['title'], item['symbols']
         
         # Return None if no symbol is found
-        if not len(item['symbols'])>0:
-            return
+        """if not len(item['symbols'])>0:
+            return"""
         
         # Get sectors from the page
         sectors = []

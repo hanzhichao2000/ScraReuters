@@ -38,8 +38,9 @@ def crawl_day_page(year=2012, month=12, day=31):
             current_date -= delta
             print '\t done!'
             counter = 10
-        except Exception:
-            print '- Error! And there is %d more times!' % counter
+        except Exception as e:
+            print e
+            print '- Error! And there are %d more times!' % counter
             os.remove(outfile)
             time.sleep(5)
             if counter == 0:
@@ -95,4 +96,12 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    try:
+        import scrapy
+        import nltk
+        main()
+    except ImportError as e:
+        print e
+        print 'Please install scrapy and nltk first. Thanks.'
+    
+    

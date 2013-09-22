@@ -5,7 +5,7 @@ A crawler for Reuters Archives.
 
 
 Usage
-=====
+`````
 
 Make sure ``scrapy`` and ``nltk`` are installed.
 
@@ -20,6 +20,6 @@ During fetching, the output info like
 means that the title is supposed to be related to the stock symbol 'nyx', though it may be inaccurate.
 
 Issues
-======
+``````
 
 Due to the update of Reuters website, the identification of stock symbols doesn't work. A simple manual detection is used, which usually makes mistake. The rules are defined in ``ScraReuters/static/company.csv``.
